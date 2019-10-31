@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+<link href="{{ asset('css/index_car_display.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 
 <div class="jumbotron">
@@ -11,18 +15,37 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
 </div>
-<div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"></h5>
-    <a href="#" class="btn btn-primary"></a>
-    <a href="#" class="btn btn-primary">Reserve now</a>
-  </div>
-    @foreach($cars as $car)
-    <p class="card-text">{{$car->description_title}}</p>
-    <a href="#" class="btn btn-primary">{{$car->interior_feature}}</a>
-    <a href="#" class="btn btn-primary">{{$car->transmission}}</a>
-    @endforeach
+<div class="container-fluid">
+    <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+            
+            @php $firstloop = false; @endphp
+            @foreach($cars as $key=>$car)
+                @if ($firstloop === false)
+                    <div class="carousel-item col-md-3 active">
+                        <img class="img-fluid mx-auto d-block" src="/assets/car_images/{{$car->image}}" alt="slide {{++$key}}">
+                    </div>
+                    @php $firstloop = true; @endphp
+                @else
+                    <div class="carousel-item col-md-3 ">
+                        <img class="img-fluid mx-auto d-block" src="/assets/car_images/{{$car->image}}" alt="slide {{++$key}}">
+                    </div>
+                @endif
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+            <i class="fa fa-chevron-left fa-lg text-muted"></i>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+            <i class="fa fa-chevron-right fa-lg text-muted"></i>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 
+@endsection
+
+@section('script')
+<script src="{{ asset('js/index_car_display.js') }}"></script>
 @endsection

@@ -22,7 +22,7 @@ class CarController extends Controller
                 ->join('fuel_types', 'model_details.fuel_type_id', '=', 'fuel_types.id')
                 ->join('engines', 'model_details.engine_id', '=', 'engines.id')
                 ->join('transmissions', 'engines.transmission_id', '=', 'transmissions.id')
-                ->select('description_title', 'interior_feature', 'transmission')->get();
+                ->select('make', 'car_model', 'engine_size', 'price', 'engine_power', 'image')->get();
 
 
         return view('home', compact("cars"));
