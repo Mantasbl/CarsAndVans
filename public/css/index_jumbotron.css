@@ -1,0 +1,12 @@
+.jumbotron {
+    background: url(../assets/public_site_images/home_jumbotron.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.car-search form{
+    width: 900px;
+}
+.car-search p {
+    font-size: 1.3rem;
+}
