@@ -15,7 +15,7 @@ class CreateEngines extends Migration
     {
         Schema::create('engines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('transmission_id');
+            $table->unsignedBigInteger('transmission_id');
             $table->tinyInteger('number_of_gears')->nullable();
             $table->smallInteger('engine_size');
             $table->smallInteger('co2_emission')->nullable();
@@ -29,8 +29,12 @@ class CreateEngines extends Migration
             $table->tinyInteger('cylingers')->nullable();
             $table->timestamps();
 
-            $table->foreign('transmission_id')->references('id')->on('transmissions');
+            $table->foreign('transmission_id')
+            ->references('id')
+            ->on('transmissions')
+            ->onDelete('cascade');
         });
+     
     }
 
     /**

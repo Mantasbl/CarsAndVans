@@ -11,6 +11,18 @@
     <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
   </p>
 </div>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <a href="#" class="btn btn-primary"></a>
+    <a href="#" class="btn btn-primary">Reserve now</a>
+  </div>
+    @foreach($cars as $car)
+    <p class="card-text">{{$car->description_title}}</p>
+    <a href="#" class="btn btn-primary">{{$car->interior_feature}}</a>
+    <a href="#" class="btn btn-primary">{{$car->transmission}}</a>
+    @endforeach
+</div>
 
-@include('layouts.cars_card')
 @endsection

@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'CarController@index');
 

@@ -15,18 +15,19 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('model_id');
-            $table->unsignedInteger('car_feature_id');
-            $table->string('description_title', 150);
+            $table->unsignedBigInteger('model_id');
+            $table->unsignedBigInteger('car_feature_id');
+            $table->text('description_title');
             $table->text('description_content');
             $table->smallInteger('year_of_reg');
             $table->mediumInteger('mileage');
             $table->decimal('yearly_road_tax', 10, 2);
             $table->char('registration', 7);
             $table->string('image')->default("");
+            $table->decimal('price', 12, 2);
             $table->timestamps();
 
-            $table->foreign('model_id')->references('id')->on('models');
+            $table->foreign('model_id')->references('id')->on('car_models');
             $table->foreign('car_feature_id')->references('id')->on('car_features');
 
         });

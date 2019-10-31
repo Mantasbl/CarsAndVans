@@ -15,9 +15,9 @@ class CreateModelDetailsTable extends Migration
     {
         Schema::create('model_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('fuel_type_id');
-            $table->unsignedInteger('engine_id');
-            $table->unsignedInteger('body_style_id');
+            $table->unsignedBigInteger('fuel_type_id');
+            $table->unsignedBigInteger('engine_id');
+            $table->unsignedBigInteger('body_style_id');
             $table->string('colour', 150);
             $table->tinyInteger('number_of_doors');
             $table->smallInteger('height');
