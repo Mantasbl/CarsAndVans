@@ -20,8 +20,8 @@ class CreateCarModelsTable extends Migration
             $table->string('car_model', 100);
             $table->timestamps();
 
-            $table->foreign('make_id')->references('id')->on('makes');
-            $table->foreign('model_detail_id')->references('id')->on('model_details');
+            $table->foreign('make_id')->references('id')->on('makes')->onDelete('cascade');
+            $table->foreign('model_detail_id')->references('id')->on('model_details')->onDelete('cascade');
 
         });
     }

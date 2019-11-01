@@ -27,9 +27,9 @@ class CreateModelDetailsTable extends Migration
             $table->tinyInteger('insurance_group');
             $table->timestamps();
 
-            $table->foreign('fuel_type_id')->references('id')->on('fuel_types');
-            $table->foreign('engine_id')->references('id')->on('engines');
-            $table->foreign('body_style_id')->references('id')->on('body_styles');
+            $table->foreign('fuel_type_id')->references('id')->on('fuel_types')->onDelete('cascade');
+            $table->foreign('engine_id')->references('id')->on('engines')->onDelete('cascade');
+            $table->foreign('body_style_id')->references('id')->on('body_styles')->onDelete('cascade');
 
         });
     }

@@ -27,8 +27,8 @@ class CreateCarsTable extends Migration
             $table->decimal('price', 12, 2);
             $table->timestamps();
 
-            $table->foreign('model_id')->references('id')->on('car_models');
-            $table->foreign('car_feature_id')->references('id')->on('car_features');
+            $table->foreign('model_id')->references('id')->on('car_models')->onDelete('cascade');
+            $table->foreign('car_feature_id')->references('id')->on('car_features')->onDelete('cascade');
 
         });
     }

@@ -1,50 +1,55 @@
 @extends('layouts.app')
 
 @section('stylesheets')
-<link href="{{ asset('css/index_car_display.css') }}" rel="stylesheet">
-<link href="{{ asset('css/index_jumbotron.css') }}" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="css/lightslider.css" />                  
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/lightslider.js"></script>
+<link href="{{ asset('css/index_car_display.scss') }}" rel="stylesheet">
+<link href="{{ asset('css/index_jumbotron.scss') }}" rel="stylesheet">
+<link href="{{ asset('css/car_card.scss') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-<div class="container ">
-    <div class="jumbotron ">
-        <h1 class="display-4 font-weight-bold text-center">Let's find your perfect vehicle</h1>
-        <p class="lead text-center">Browse online or visit us in our dealerships to find your ideal car today.</p>
-        <hr class="my-4">
-        <div class="car-search d-flex justify-content-center">
-            <form action="">
-                <p>Quick Search:</p>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <select id="inputState" class="form-control">
-                            <option selected>Any Make</option>
-                            <option>...</option>
-                        </select>
+    <div class="container">
+        <div class="jumbotron ">
+            <h1 class="display-4 font-weight-bold text-center">Let's find your perfect vehicle</h1>
+            <p class="lead text-center">Browse online or visit us in our dealerships to find your ideal car today.</p>
+            <hr class="my-4">
+            <div class="car-search d-flex justify-content-center">
+                <form action="">
+                    <p>Quick Search:</p>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <select name="carMake" id="inputState" class="form-control">
+                                <option selected>Any Make</option>
+                                @foreach($searchOptionsMake as $makeOption)
+                                <option value="{{$makeOption->make}}">{{$makeOption->make}} ({{$makeOption->count}})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <select name="carModel" id="inputState" class="form-control">
+                                <option selected>Any Model</option>
+                                @foreach($searchOptionsModel as $modelOption)
+                                <option value="{{$modelOption->car_model}}">{{$modelOption->car_model}} ({{$modelOption->count}})</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <select id="inputState" class="form-control">
+                                <option selected>Price (Max)</option>
+                                @for ($i = 1000; $i <= 15000; $i+=1000)
+                                <option>£ {{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary col-md-1" style="height: 38px;">Search</button>
                     </div>
-                    <div class="form-group col-md-4">
-                        <select id="inputState" class="form-control">
-                            <option selected>Any Model</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <select id="inputState" class="form-control">
-                            <option selected>Price (Max)</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary col-md-1" style="height: 38px;">Sign in</button>
-                </div>
-
-            </form>
+                </form>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -10 75 110" preserveAspectRatio="none">
+                <polygon fill="white" points="0,100 100,0 100,100"/>
+            </svg>
         </div>
-        
     </div>
-</div>
-        
+
 <!-- Car carousel -->
 <div class="container text-center my-3">
     <h2 class="font-weight-bold">Our latest offers</h2>
@@ -96,4 +101,6 @@
 
 @section('script')
 <script src="{{ asset('js/index_car_display.js') }}"></script>
+<script src="{{ asset('js/car_card.js') }}"></script>
+
 @endsection

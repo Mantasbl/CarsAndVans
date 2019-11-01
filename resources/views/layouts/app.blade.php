@@ -14,6 +14,7 @@
         <link rel="icon" href="/assets/public_site_images/logo.svg">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/nav.scss') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.5.95/css/materialdesignicons.min.css">
         <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet"> 
         @yield('stylesheets')
@@ -22,8 +23,8 @@
     <body>
         <div id="app">
             <!-- Navbar -->
-            <div class="container">
-                <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="nav-container container">
+                <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="#">
                         <img src="{{asset('assets/public_site_images/logo.svg')}}" height="40" class="d-inline-block align-top" alt="">
                     </a>
@@ -33,10 +34,10 @@
                     <div class="collapse navbar-collapse " id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Features</a>
+                            <a class="nav-link" href="/store">Store</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Pricing</a>

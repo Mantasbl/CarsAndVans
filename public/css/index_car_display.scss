@@ -1,39 +1,4 @@
-a,
-a:link,
-a:visited,
-a:active {
-    color: #212529; /*color of your choosing*/
-    text-decoration: none;
-}
-.card {
-    margin:30px auto;
-    transition: box-shadow .3s;
-    border-radius:10px;
-  }
-.card:hover {
-    box-shadow:0 0px 20px rgba(0,0,0,0.12);
-}
-.card-prices {
-    background: #eeeeec;
-}
-.card-icon {
-    padding-right:0;
-    font-size: 22px;
-    color:#7a8691;
-}
-.card-attribute {
-    padding-top:5px;
-    padding-left:0;
-    font-size:14px;
-    color:#7a8691;
-}
-.card-price {
-    padding:15px 5px;
-    font-size: 24px;
-}
-.card-price:first-child {
-    border-right: 2px solid white;
-}
+
 .carousel-control-prev, .carousel-control-next {
     max-width:50px;
     
