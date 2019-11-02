@@ -1,0 +1,23 @@
+.why-us-container .card-header, .card {
+    background: transparent;
+    border: none;
+}
+.why-us-card:hover {
+    box-shadow: none;
+}
+.why-us-icon {
+    background: rgba(246, 246, 246, 1);
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 70%;
+    font-size: 36px;
+    color: grey;
+}
+.why-us-card-title:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 10%;
+    padding-top: 20px;
+    border-bottom: 2px solid red;
+}

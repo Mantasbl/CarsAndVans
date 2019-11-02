@@ -5,14 +5,14 @@
 <link href="{{ asset('css/index_jumbotron.scss') }}" rel="stylesheet">
 <link href="{{ asset('css/car_card.scss') }}" rel="stylesheet">
 <link href="{{ asset('css/index_testimonial.scss') }}" rel="stylesheet">
-<link href="{{ asset('css/svg.scss') }}" rel="stylesheet">
+<link href="{{ asset('css/index_why_us.scss') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
 @endsection
 
 @section('content')
 <!-- Header jumbotron -->
 <div class="container">
-    <div class="jumbotron ">
+    <div class="jumbotron">
         <h1 class="display-4 font-weight-bold text-center">Let's find your perfect vehicle</h1>
         <p class="lead text-center">Browse online or visit us in our dealerships to find your ideal car today.</p>
         <hr class="my-4">
@@ -56,7 +56,7 @@
 
 <!-- Car carousel -->
 <div class="container text-center my-3">
-    <h2 class="font-weight-bold">Our latest offers</h2>
+    <h2 class="font-weight-bold">Our Latest Offers</h2>
     <div class="row mx-auto my-auto">
         <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
             <div class="carousel-inner w-100" role="listbox">
@@ -147,6 +147,42 @@
     <svg class="svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 -10 75 110" preserveAspectRatio="none">
         <polygon fill="white" points="0,100 100,0 100,100"/>
     </svg>
+</div>
+
+<!-- Why Choose Us section -->
+
+<div class="container why-us-container">
+    <h2 class="font-weight-bold text-center">Why Choose Us</h2>
+    <div class="row mx-auto my-auto  text-center">
+        <div class="card why-us-card mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header mt-5"><i class="mdi mdi-settings why-us-icon py-4"></i></div>
+            <div class="card-body mt-2">
+                <h5 class="card-title why-us-card-title font-weight-bold">Free Support</h5>
+                <p class="card-text">No cost technical support for the first 2 years, to let you enjoy your time worry free.</p>
+            </div>
+        </div>
+        <div class="card why-us-card mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header mt-5"><i class="mdi mdi-cash why-us-icon py-4"></i></div>
+            <div class="card-body mt-2">
+                <h5 class="card-title why-us-card-title font-weight-bold">Affordable</h5>
+                <p class="card-text">We guarantee lowest price for any of out vehicles. Found it cheaper? We'll match it.</p>
+            </div>
+        </div>
+        <div class="card why-us-card mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header mt-5"><i class="mdi mdi-water why-us-icon py-4"></i></div>
+            <div class="card-body mt-2">
+                <h5 class="card-title why-us-card-title font-weight-bold">Oil Changes</h5>
+                <p class="card-text">All of our vehicles come with oil carefully replaced by our skilled technicians</p>
+            </div>
+        </div>
+        <div class="card why-us-card mb-3 text-center" style="max-width: 18rem;">
+            <div class="card-header mt-5"><i class="mdi mdi-car why-us-icon py-4"></i></div>
+            <div class="card-body mt-2">
+                <h5 class="card-title why-us-card-title font-weight-bold">All Brands</h5>
+                <p class="card-text">Each and every vehicle brand can be found here. Don't see something you like? Text us, we'll sort you out.</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 

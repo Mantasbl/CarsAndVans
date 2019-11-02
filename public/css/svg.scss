@@ -11,8 +11,17 @@ svg {
 .testimonials-container .svg-bottom, .svg-top {
     margin-left:-15px;
 }
+.testimonials-container .svg-bottom {
+    margin-bottom: -1px;
+}
 .svg-top {
     top:-1px;
+}
+.svg-footer-top {
+    position:relative;
+    margin-left:-15px;
+    top:-1px;
+    width:110%;
 }
   @media (max-width: 900px) {
       svg {
