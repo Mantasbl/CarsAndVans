@@ -1,0 +1,45 @@
+.jumbotron {
+    position: relative;
+    background: url(../assets/public_site_images/home_jumbotron-5.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.jumbotron h1 {
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+}
+.text-red {
+    color: red;
+}
+.car-show-specifications, .car-show-title {
+    border: 1px dotted #ddd;
+    border-radius: 5px;
+}
+.specification-header {
+    margin-top: 40px;
+}
+.specification-header:after {
+        content: "";
+        display: block;
+        
+        width: 10%;
+        padding-top: 20px;
+        border-bottom: 2px solid red;
+}
+.car-show-spec {
+    padding-top:20px;
+    font-size: 12px;
+    border-bottom: 1px dotted #ddd; 
+}
+.car-show-spec p {
+    font-weight: bold;
+}
+.svg-footer-top {
+    display:none;
+}
+.footer-container {
+    padding-top: 50px;
+    margin-top: 50px;
+}

@@ -23,6 +23,9 @@ svg {
     top:-1px;
     width:110%;
 }
+.svg-header-bottom {
+    bottom: -1px;
+}
   @media (max-width: 900px) {
       svg {
           margin-left: 0px;
