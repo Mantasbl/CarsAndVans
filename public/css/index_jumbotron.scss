@@ -1,6 +1,7 @@
 .jumbotron {
     position: relative;
-    background: url(../assets/public_site_images/home_jumbotron.png);
+    background: url(../assets/public_site_images/home_jumbotron-2.png);
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
@@ -12,12 +13,5 @@
     font-size: 1.3rem;
 }
 .car-search {
-    margin-bottom: 10vw;
+    padding-bottom: 10vw;
 }
-svg {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 10vw;
-    margin-top:50px;
-  }

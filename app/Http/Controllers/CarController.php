@@ -24,7 +24,9 @@ class CarController extends Controller
         ->join('engines', 'model_details.engine_id', '=', 'engines.id')
         ->join('transmissions', 'engines.transmission_id', '=', 'transmissions.id');
 
-        $cars = $db->select('make', 'car_model', 'engine_size', 'price', 'engine_power', 'image', 'body_style', 'year_of_reg', 'number_of_doors', 'fuel_type', 'transmission', 'mileage')->get();
+        $cars = $db
+                ->select('cars.id', 'make', 'car_model', 'engine_size', 'price', 'engine_power', 'image', 'body_style', 'year_of_reg', 'number_of_doors', 'fuel_type', 'transmission', 'mileage')
+                ->get();
         
 
         $searchOptionsMake = $db->select(DB::raw('COUNT(make) as count, make'))->groupBy('make')->get();
@@ -90,7 +92,7 @@ class CarController extends Controller
         ->join('engines', 'model_details.engine_id', '=', 'engines.id')
         ->join('transmissions', 'engines.transmission_id', '=', 'transmissions.id');
 
-        $cars = $db->select('*')->get();
+        $cars = $db->get();
 
         if($request->ajax()){
             dd('request');

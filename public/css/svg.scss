@@ -1,0 +1,21 @@
+svg {
+    position: absolute;
+    width: 100%;
+    height: 10vw;
+    margin-left: -32px;
+  }
+.svg-bottom {
+    bottom: 0;
+
+}
+.testimonials-container .svg-bottom, .svg-top {
+    margin-left:-15px;
+}
+.svg-top {
+    top:-1px;
+}
+  @media (max-width: 900px) {
+      svg {
+          margin-left: 0px;
+      }
+  }
