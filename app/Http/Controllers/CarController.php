@@ -85,6 +85,7 @@ class CarController extends Controller
         return view('car/show', compact('cars'));
     }
     
+    //Display searchable cars listings
     public function filter(Request $request) {
         
         $db = DB::table('cars')
@@ -97,6 +98,11 @@ class CarController extends Controller
         ->join('engines', 'model_details.engine_id', '=', 'engines.id')
         ->join('transmissions', 'engines.transmission_id', '=', 'transmissions.id');
         
+        //If this is not predefined, none of the listing would appear when accessing /search route
+        if (!$request->price) {
+            $request->price = 100000;
+        }
+
         $cars = $db
                 ->where('make', 'LIKE', $request->make)
                 ->where('car_model', 'LIKE', $request->car_model)
@@ -104,7 +110,7 @@ class CarController extends Controller
                 ->where('body_style', 'LIKE', $request->body_style)
                 ->where('fuel_type', 'LIKE', $request->fuel_type)
                 ->where('colour', 'LIKE', $request->colour)
-                ->where('price', '<=', intval($request->price))
+                ->where('price', '<', intval($request->price))
                 ->get();
         // $transmissions = DB::table('transmissions')->select('transmission')->get();
         function groupBy($obj, $attribute) {
@@ -131,7 +137,6 @@ class CarController extends Controller
         $carModelOptions = groupBy($searchOptionsModel, "car_model");
         return view('store', compact('cars', 'colourOptions', 'makeOptions', 'transmissionOptions', 'bodyStyleOptions', 'fuelTypeOptions', 'carModelOptions'));
     }
-    //Display searchable cars listings
    
     /**
      * Show the form for editing the specified resource.

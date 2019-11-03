@@ -37,7 +37,7 @@
                                 @endforeach
                             </select>
                             <select name="price" class="form-control mx-3 my-2 col-md-3">
-                                <option selected value="999999">Price (Max)</option>
+                                <option selected value="254524">Price (Max)</option>
                                 @for ($i = 1000; $i <= 15000; $i+=1000) <option value="{{$i}}">£ {{$i}}</option>
                                     @endfor
                             </select>
