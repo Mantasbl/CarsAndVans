@@ -12,6 +12,5 @@
 */
 
 Route::get('/', 'CarController@index');
-Route::get('/search', 'CarController@search')->name('search');
+Route::get('/search', 'CarController@filter')->name('car.filter');
 Route::resource('car', 'CarController');
-

@@ -28,11 +28,17 @@ class CarController extends Controller
                 ->select('cars.id', 'make', 'car_model', 'engine_size', 'price', 'engine_power', 'image', 'body_style', 'year_of_reg', 'number_of_doors', 'fuel_type', 'transmission', 'mileage')
                 ->get();
         
-
-        $searchOptionsMake = $db->select(DB::raw('COUNT(make) as count, make'))->groupBy('make')->get();
-        $searchOptionsModel = $db->select(DB::raw('COUNT(car_model) as count, car_model'))->groupBy('car_model')->get();
-
-        return view('home', compact("cars", "searchOptionsMake", "searchOptionsModel"))->with('i', (request()->input('page', 1) - 1) * 20);
+        function groupBy($obj, $attribute) {
+            $val = array();
+            foreach ($obj as $item){
+                array_push($val, $item->$attribute);
+            }
+            $val = array_unique($val);
+            return $val;
+        }
+        $searchOptionsMake = $db->select('make')->get();
+        $makeOptions = groupBy($searchOptionsMake, "make");
+        return view('home', compact('cars', 'makeOptions'));
     }
 
     /**
@@ -79,9 +85,8 @@ class CarController extends Controller
         return view('car/show', compact('cars'));
     }
     
-    //Display searchable cars listings
-    public function search(Request $request)
-    {
+    public function filter(Request $request) {
+        
         $db = DB::table('cars')
         ->join('car_features', 'cars.car_feature_id', '=', 'car_features.id')
         ->join('car_models', 'cars.model_id', '=', 'car_models.id')
@@ -91,61 +96,43 @@ class CarController extends Controller
         ->join('fuel_types', 'model_details.fuel_type_id', '=', 'fuel_types.id')
         ->join('engines', 'model_details.engine_id', '=', 'engines.id')
         ->join('transmissions', 'engines.transmission_id', '=', 'transmissions.id');
-
-        $cars = $db->get();
-
-        if($request->ajax()){
-            dd('request');
-            $output="";
-            $products = $db->where('make','LIKE','%'.$request->search."%")
-                        ->orWhere('car_model','LIKE','%'.$request->search."%")
-                        ->orWhere('fuel_type','LIKE','%'.$request->search."%")
-                        ->orWhere('body_style','LIKE','%'.$request->search."%")
-                        ->get();
-            
-            if($products){
-         
-               foreach ($products as  $car) {
-            //    I am aware of how much of an abomination this is
-                $output.=
-                    '<a href="#"' . 
-                    '<div class="card" style="width: 20rem;">' .
-                        '<div class="card-body">' .
-                            '<div class="card-title font-weight-bold text-left">' .
-                                strtoupper($car->make . " " . $car->car_model . " " . $car->body_style) . '</div>' .
-                            '<div class="card-text text-left" style="font-size: 12px">' .
-                                $car->year_of_reg . " " . round($car->engine_size / 1000, 1) . "L " . $car->number_of_doors . "DR" . '</div>' .
-                            '<div></div>' .
-                        '</div>' .
-                        '<img class="card-img-top" src="/assets/car_images/' . $car->image . '">' .
-                        '<div class="d-flex justify-content-center card-prices">' . 
-                            '<span class="card-price col-6 font-weight-bold">£'. round($car->price) . '</span>' .
-                            '<span class="card-price col-6 font-weight-bold" data-toggle="tooltip" data-placement="top"' .
-                                'title="Estimated monthly payment for 48 months">£' . round($car->price / 48) . ' <i' .
-                                    'class="mdi mdi-information-outline" style="font-size: 18px;"></i></span>' .
-                        '</div>' .
-                        '<div class="d-flex justify-content-center">' .
-                            '<span class="col-1 card-icon"><i class="mdi mdi-fuel"></i></span>' .
-                            '<span class="col-5 card-attribute">'. $car->fuel_type . '</span>' .
-                            '<span class="col-1 card-icon"><i class="mdi mdi-car"></i></span>' .
-                            '<span class="col-5 card-attribute">'. $car->body_style . '</span>' .
-                        '</div>' .
-                        '<div class="d-flex justify-content-center">' .
-                            '<span class="col-1 card-icon"><i class="mdi mdi-car-shift-pattern"></i></span>' .
-                            '<span class="col-5 card-attribute">'. $car->transmission . '</span>' .
-                            '<span class="col-1 card-icon"><i class="mdi mdi-water"></i></span>' .
-                            '<span class="col-5 card-attribute">'. $car->mileage . ' mls</span>' .
-                        '</div>' .
-                    '</div>' . 
-                    '</a>';
-
-               }
-               return $output;  
-            } 
+        
+        $cars = $db
+                ->where('make', 'LIKE', $request->make)
+                ->where('car_model', 'LIKE', $request->car_model)
+                ->where('transmission', 'LIKE', $request->transmission)
+                ->where('body_style', 'LIKE', $request->body_style)
+                ->where('fuel_type', 'LIKE', $request->fuel_type)
+                ->where('colour', 'LIKE', $request->colour)
+                ->where('price', '<=', intval($request->price))
+                ->get();
+        // $transmissions = DB::table('transmissions')->select('transmission')->get();
+        function groupBy($obj, $attribute) {
+           $val = array();
+           foreach ($obj as $item){
+            array_push($val, $item->$attribute);
+           }
+           $val = array_unique($val);
+           return $val;
         }
-        return view('store', compact('cars'));
-    }
 
+        $searchOptionsTransmission = $db->select('transmission')->get();
+        $searchOptionsBodyStyle = $db->select('body_style')->get();
+        $searchOptionsFuelType = $db->select('fuel_type')->get();
+        $searchOptionsColour = $db->select('colour')->get();
+        $searchOptionsMake = $db->select('make')->get();
+        $searchOptionsModel = $db->select('car_model')->get();
+        // $searchOptionsModel = $db->select(DB::raw('COUNT(car_model) as count, car_model'))->groupBy('car_model')->get();
+        $transmissionOptions = groupBy($searchOptionsTransmission, "transmission");
+        $bodyStyleOptions = groupBy($searchOptionsBodyStyle, "body_style");
+        $fuelTypeOptions = groupBy($searchOptionsFuelType, "fuel_type");
+        $colourOptions = groupBy($searchOptionsColour, "colour");
+        $makeOptions = groupBy($searchOptionsMake, "make");
+        $carModelOptions = groupBy($searchOptionsModel, "car_model");
+        return view('store', compact('cars', 'colourOptions', 'makeOptions', 'transmissionOptions', 'bodyStyleOptions', 'fuelTypeOptions', 'carModelOptions'));
+    }
+    //Display searchable cars listings
+   
     /**
      * Show the form for editing the specified resource.
      *

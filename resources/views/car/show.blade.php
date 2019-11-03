@@ -17,7 +17,7 @@
 
 <div class="container car-show-container">
     <div class="row">
-        <div class="col-8 car-show-content">
+        <div class="col-12 col-lg-8 car-show-content">
             <h2 class="font-weight-bold car-show-title">
                 {{strtoupper($car->make . " " . $car->car_model . " " . $car->body_style) }}</h2>
             <img class="" src="/assets/car_images/{{$car->image}}" width=100%>
@@ -43,7 +43,7 @@
                     </p>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion">
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
@@ -136,7 +136,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 car-show-specifications">
+        <div class="col-12 col-lg-4 car-show-specifications">
             <h1 class="car-show-price">£{{$car->price}}</h1>
             <h4 class="specification-header">SPECIFICATIONS</h4>
             <div class="row car-show-spec">
