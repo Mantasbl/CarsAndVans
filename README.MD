@@ -1,7 +1,6 @@
-# Dealership site
+# Dealership site based on laravel and mysql
 
-# Available at
-  http://baltakisdev.com
+![Home Page](CarsAndVansHome.gif)
 
 # ERD
 
